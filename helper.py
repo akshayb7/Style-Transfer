@@ -1,3 +1,8 @@
+from PIL import Image
+import numpy as np
+import torch
+from torchvision import transforms
+
 def load_image_as_tensor(img_path, max_size=400, shape=None):
     '''
     Function to load in images and convert them into provided size in x-y dimensions.
