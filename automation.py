@@ -50,16 +50,22 @@ def style_transfer(content_path, style_path, model, style_weights=None, alpha=1,
         optimizer.zero_grad() 
         total_loss.backward()
         optimizer.step()
-    return content, target 
+    return content, style, target 
 
-def plot_images(content, target):
+def plot_images(content, style, target):
     '''
     Plot the content and target images
     content: image_tensor
     target: image_tensor
     '''
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
+    fig, (ax1, ax2, ax3) = plt.subplots(1,3, figsize=(20, 10))
     ax1.imshow(image_tensor_to_numpy(content))
-    ax2.imshow(image_tensor_to_numpy(target))
+    ax2.imshow(image_tensor_to_numpy(style))
+    ax3.imshow(image_tensor_to_numpy(target))
     ax1.set_title('Content image', fontsize=14)
-    ax2.set_title('Target image', fontsize=14)
+    ax2.set_title('Style image', fontsize=14)
+    ax3.set_title('Converted image', fontsize=14)
+    ax1.axis('off')
+    ax2.axis('off')
+    ax3.axis('off')
+    
